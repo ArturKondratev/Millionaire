@@ -7,13 +7,10 @@
 
 import Foundation
 
-struct QuestionsModel {
-    let qestion, coorectAnswer, answersA, answersB, answersC, answersD : String
-}
-
 class Questions {
+    
     static func needQestions() -> [QuestionsModel] {
-        return [ QuestionsModel(qestion: "Сколко будет 2+2*2?",
+        return [ QuestionsModel(qestion: "Сколько будет 2+2*2?",
                                 coorectAnswer: "6",
                                 answersA: "2",
                                 answersB: "4",

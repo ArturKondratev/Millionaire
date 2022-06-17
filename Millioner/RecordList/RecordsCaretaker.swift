@@ -15,7 +15,31 @@ class RecordsCaretaker {
     private let key = "records"
     
     // MARK: - Functions
-    func save(records: [Record]) {
+    func saveRecord(records: [GameSession]) {
+        do {
+            let list = self.retrieveRecords()
+            let data = try encoder.encode(list + records)
+            UserDefaults.standard.set(data, forKey: key)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func retrieveRecords() -> [GameSession] {
+        guard let data = UserDefaults.standard.data(forKey: key) else {
+            return []
+        }
+        
+        do {
+            return try decoder.decode([GameSession].self, from: data)
+        } catch {
+            print(error)
+            return []
+        }
+    }
+    
+    func clearRecordList() {
+        let records:[GameSession] = []
         do {
             let data = try encoder.encode(records)
             UserDefaults.standard.set(data, forKey: key)
@@ -24,16 +48,4 @@ class RecordsCaretaker {
         }
     }
     
-    func retrieveRecords() -> [Record] {
-        guard let data = UserDefaults.standard.data(forKey: key) else {
-            return []
-        }
-        
-        do {
-            return try decoder.decode([Record].self, from: data)
-        } catch {
-            print(error)
-            return []
-        }
-    }
 }
