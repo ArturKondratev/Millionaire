@@ -7,36 +7,50 @@
 
 import Foundation
 
-struct Record: Codable {
-    let date: Date
-    let score: Int
-}
-
 final class Game {
     
-    var gameSession: GameScene?
-    
+    // MARK: - Properties
+    var gameSession: GameSession?
     static let shared = Game()
+    private let recordsCaretaker = RecordsCaretaker()
+    private let questionsCaretaker = QuestionCaretaker()
     
-    private let recordCaretaker = RecordsCaretaker()
+    var questionsArray: [QuestionsModel] = []
     
-    private(set) var records: [Record] {
-        didSet {
-            recordCaretaker.save(records: records)
+//    var arrayFromMemory = [QuestionsModel]() {
+//        didSet {
+//            questionsCaretaker.save(questions: self.arrayFromMemory)
+//        }
+//    }
+    
+    //MARK: - Initialization
+    private init() {
+       // self.arrayFromMemory = self.questionsCaretaker.retrieveRecords()
+        questionsArray = Questions.needQestions() + questionsCaretaker.retrieveRecords()
+    }
+    
+    //MARK: - добавляем результат в массив
+    func addResult(record: GameSession) {
+        recordsCaretaker.saveRecord(records: [record])
+    }
+    
+    //MARK: - Получаем стратегию и отдаем необходимый массив: последовательный или перемешанный
+    var questionOrder: Difficulty = .sequence
+    
+    private var createArrayStrategy: CreateGameStrategy  {
+        switch questionOrder {
+        case .sequence:
+            return NormalQuestionsStrategy()
+        case .random:
+            return RandomQuestionsStrategy()
         }
     }
     
-    private init() {
-        self.records = self.recordCaretaker.retrieveRecords()
+    var strategyInstance: CreateGameStrategy?
+    
+    func returnRequestedArray() -> [QuestionsModel] {
+        strategyInstance = createArrayStrategy
+        return (strategyInstance?.createGame())!
     }
     
-    // MARK: - Functions
-    
-    func addRecord (_ record: Record) {
-        records.append(record)
-    }
-    
-    func clearRecords() {
-        records = []
-    }
 }

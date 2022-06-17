@@ -8,5 +8,5 @@
 import Foundation
 
 enum Difficulty {
-    case easy, hard
+    case sequence, random
 }

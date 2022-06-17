@@ -10,6 +10,10 @@ import UIKit
 
 class RecordListViewController: UITableViewController {
     
+    // MARK: - Properties
+    let recordsCaretaker = RecordsCaretaker()
+    var recordList: [GameSession] = []
+    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -19,19 +23,35 @@ class RecordListViewController: UITableViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.recordList = recordsCaretaker.retrieveRecords().reversed()
+       // self.recordList.reversed()
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Game.shared.records.count
+        return recordList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let record =  Game.shared.records.reversed()[indexPath.row]
+        
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RecordTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        let record = recordList[indexPath.row]
+        cell.configure(record: record)
         cell.selectionStyle = .none
-        cell.textLabel?.text = dateFormatter.string(from: record.date) + " " + "Правильных ответов \(record.score)"
         return cell
+    }
+    
+    // MARK: - Functions
+    @IBAction func clearList(_ sender: Any) {
+        recordsCaretaker.clearRecordList()
+        self.recordList.removeAll()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
