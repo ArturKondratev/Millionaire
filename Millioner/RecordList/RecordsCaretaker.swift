@@ -29,7 +29,6 @@ class RecordsCaretaker {
         guard let data = UserDefaults.standard.data(forKey: key) else {
             return []
         }
-        
         do {
             return try decoder.decode([GameSession].self, from: data)
         } catch {
@@ -47,5 +46,4 @@ class RecordsCaretaker {
             print(error)
         }
     }
-    
 }

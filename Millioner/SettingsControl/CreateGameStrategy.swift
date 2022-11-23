@@ -13,6 +13,7 @@ protocol CreateGameStrategy {
 
 final class RandomQuestionsStrategy: CreateGameStrategy {
     private let questions = QuestionCaretaker()
+    
     func createGame() -> [QuestionsModel] {
         var questions = Questions.needQestions() + questions.retrieveRecords()
         questions.shuffle()
@@ -22,6 +23,7 @@ final class RandomQuestionsStrategy: CreateGameStrategy {
 
 final class NormalQuestionsStrategy: CreateGameStrategy {
     private let questions = QuestionCaretaker()
+    
     func createGame() -> [QuestionsModel] {
         let questions = Questions.needQestions() + questions.retrieveRecords()
         return questions

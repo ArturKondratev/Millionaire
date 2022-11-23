@@ -17,26 +17,26 @@ class GameViewController: UIViewController {
     @IBOutlet weak var answerC: UIButton!
     @IBOutlet weak var answerD: UIButton!
     
-    @IBAction func answerButtonA(_ sender: Any) {
+    @IBAction func answerButtonA(_ sender: UIButton) {
         if answerA.titleLabel!.text == " " { return }
-        checkAnswer(answer: answerA.titleLabel!.text!)
+        checkAnswer(answer: answerA.titleLabel!.text!, sender)
     }
     
-    @IBAction func answerButtonB(_ sender: Any) {
+    @IBAction func answerButtonB(_ sender: UIButton) {
         if answerB.titleLabel!.text == " " { return }
-        checkAnswer(answer: answerB.titleLabel!.text!)
+        checkAnswer(answer: answerB.titleLabel!.text!, sender)
     }
     
-    @IBAction func answerButtonC(_ sender: Any) {
+    @IBAction func answerButtonC(_ sender: UIButton) {
         if answerC.titleLabel!.text == " " { return }
-        checkAnswer(answer: answerC.titleLabel!.text!)
+        checkAnswer(answer: answerC.titleLabel!.text!, sender)
     }
     
-    @IBAction func answerButtonD(_ sender: Any) {
+    @IBAction func answerButtonD(_ sender: UIButton) {
         if answerD.titleLabel!.text == " " { return }
-        checkAnswer(answer: answerD.titleLabel!.text!)
+        checkAnswer(answer: answerD.titleLabel!.text!, sender)
     }
-    
+
     var gameSession = GameSession()
     var qestionsArray: [QuestionsModel] = []
     var completion: ((Int) -> ())?
@@ -75,13 +75,29 @@ class GameViewController: UIViewController {
     }
     
     /// Проверяем ответ
-    /// - Parameter answer: текст ответа
-    func checkAnswer(answer: String) {
+    func checkAnswer(answer: String, _ sender: UIButton) {
         if qestionsArray[questionNumber].coorectAnswer == answer {
-            questionNumber += 1
-            setQuestion()
+
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.1,
+                           options: .autoreverse,
+                           animations: {
+                sender.backgroundColor = .green
+            }, completion: {_ in
+                self.questionNumber += 1
+                self.setQuestion()
+                sender.backgroundColor = .systemBackground
+            })
+        
         } else {
-            gameOver()
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.1,
+                           options: .autoreverse,
+                           animations: {
+                sender.backgroundColor = .red
+            }, completion: {_ in
+                self.gameOver()
+            })
         }
     }
     

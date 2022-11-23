@@ -14,18 +14,13 @@ final class Game {
     static let shared = Game()
     private let recordsCaretaker = RecordsCaretaker()
     private let questionsCaretaker = QuestionCaretaker()
-    
     var questionsArray: [QuestionsModel] = []
     
-//    var arrayFromMemory = [QuestionsModel]() {
-//        didSet {
-//            questionsCaretaker.save(questions: self.arrayFromMemory)
-//        }
-//    }
-    
+    var questionOrder: Difficulty = .sequence
+    var strategyInstance: CreateGameStrategy?
+        
     //MARK: - Initialization
     private init() {
-       // self.arrayFromMemory = self.questionsCaretaker.retrieveRecords()
         questionsArray = Questions.needQestions() + questionsCaretaker.retrieveRecords()
     }
     
@@ -35,8 +30,6 @@ final class Game {
     }
     
     //MARK: - Получаем стратегию и отдаем необходимый массив: последовательный или перемешанный
-    var questionOrder: Difficulty = .sequence
-    
     private var createArrayStrategy: CreateGameStrategy  {
         switch questionOrder {
         case .sequence:
@@ -45,12 +38,9 @@ final class Game {
             return RandomQuestionsStrategy()
         }
     }
-    
-    var strategyInstance: CreateGameStrategy?
-    
+
     func returnRequestedArray() -> [QuestionsModel] {
         strategyInstance = createArrayStrategy
         return (strategyInstance?.createGame())!
     }
-    
 }

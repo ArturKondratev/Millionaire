@@ -8,12 +8,12 @@
 import Foundation
 
 struct GameSession: Codable {
+    
     var answeredQuestionCount: Int?
     var date: Date?
     var fifyFifty: Bool = true
     var callPrompt: Bool = true
     var helpHall: Bool = true
-    
 }
 
  

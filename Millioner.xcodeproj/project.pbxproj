@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		48065B92285B3E4200CE6534 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
-		48065B94285B713000CE6534 /* AddQuestionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddQuestionsController.swift; path = Millioner/AddQuestionsController.swift; sourceTree = "<group>"; };
+		48065B94285B713000CE6534 /* AddQuestionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionsController.swift; sourceTree = "<group>"; };
 		480F0E5D284150FA000F1750 /* Millioner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millioner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		480F0E60284150FA000F1750 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		480F0E62284150FA000F1750 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		482A1E54285A3F53003EE851 /* QuestionCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCaretaker.swift; sourceTree = "<group>"; };
 		482A1E56285A4219003EE851 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
 		482E2B122847B5E900105F52 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		482E2B142847D27700105F52 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Questions.swift; path = Millioner/Questions.swift; sourceTree = "<group>"; };
+		482E2B142847D27700105F52 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		484B64A42859FA930075FA73 /* SettingsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +91,7 @@
 				483CB5302843B55E002DA996 /* MainMenuControl */,
 				484B64A32859FA5C0075FA73 /* SettingsControl */,
 				480F0E74284153CA000F1750 /* Game */,
-				480F0E7728415438000F1750 /* Questions */,
+				483512FB292E0BB300803037 /* Questions */,
 				4819254D28424EDB004FD2EB /* RecordList */,
 			);
 			path = Millioner;
@@ -107,18 +107,6 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		480F0E7728415438000F1750 /* Questions */ = {
-			isa = PBXGroup;
-			children = (
-				482E2B142847D27700105F52 /* Questions.swift */,
-				482A1E56285A4219003EE851 /* QuestionsModel.swift */,
-				482A1E54285A3F53003EE851 /* QuestionCaretaker.swift */,
-				48065B94285B713000CE6534 /* AddQuestionsController.swift */,
-			);
-			name = Questions;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		4819254D28424EDB004FD2EB /* RecordList */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +115,17 @@
 				4819254928424467004FD2EB /* RecordsCaretaker.swift */,
 			);
 			path = RecordList;
+			sourceTree = "<group>";
+		};
+		483512FB292E0BB300803037 /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				482A1E56285A4219003EE851 /* QuestionsModel.swift */,
+				482E2B142847D27700105F52 /* Questions.swift */,
+				48065B94285B713000CE6534 /* AddQuestionsController.swift */,
+				482A1E54285A3F53003EE851 /* QuestionCaretaker.swift */,
+			);
+			path = Questions;
 			sourceTree = "<group>";
 		};
 		483CB5302843B55E002DA996 /* MainMenuControl */ = {

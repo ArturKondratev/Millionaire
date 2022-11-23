@@ -21,11 +21,9 @@ class AddQuestionsController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         let hideKeyBoardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyBoardGesture)
-        print(questionsCaretaker.retrieveRecords())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +72,6 @@ class AddQuestionsController: UIViewController {
               answerB.hasText,
               answerC.hasText,
               answerD.hasText
-                
         else {
             showError()
             return
@@ -118,7 +115,6 @@ class AddQuestionsController: UIViewController {
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-        
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
     }
@@ -127,5 +123,4 @@ class AddQuestionsController: UIViewController {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
-    
 }

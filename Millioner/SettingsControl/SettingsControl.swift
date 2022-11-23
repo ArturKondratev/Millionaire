@@ -12,6 +12,7 @@ class SettingsControl: UIViewController {
     
     //MARK: - Properties
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    let defaults = UserDefaults.standard
    
     private var selectedDifficulty: Difficulty {
         switch self.segmentControl.selectedSegmentIndex {
@@ -26,6 +27,7 @@ class SettingsControl: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         segmentChangeValue()
+        self.segmentControl.selectedSegmentIndex = defaults.integer(forKey: "indexOfSegment")
     }
     
     //MARK: - Functions
@@ -35,10 +37,6 @@ class SettingsControl: UIViewController {
     
     @objc func valueChanged() {
         Game.shared.questionOrder = selectedDifficulty
+        defaults.set(self.segmentControl.selectedSegmentIndex, forKey: "indexOfSegment")
     }
-    
 }
-
-
-
-

@@ -24,7 +24,6 @@ class RecordListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.recordList = recordsCaretaker.retrieveRecords().reversed()
-       // self.recordList.reversed()
     }
     
     // MARK: - Table view data source
@@ -33,7 +32,6 @@ class RecordListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RecordTableViewCell
         else {
