@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
     
     var questionNumber = 0 {
         didSet {
-            answeredQuestionsCount.text = "\(questionNumber) / \(qestionsArray.count) "
+            answeredQuestionsCount.text = "\(questionNumber + 1) / \(qestionsArray.count) "
         }
     }
     
@@ -56,7 +56,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         self.qestionsArray = Game.shared.returnRequestedArray()
         setQuestion()
-        answeredQuestionsCount.text = "\(questionNumber) / \(qestionsArray.count) "
+        answeredQuestionsCount.text = "\(questionNumber + 1) / \(qestionsArray.count) "
     }
     
     // MARK: - Functions

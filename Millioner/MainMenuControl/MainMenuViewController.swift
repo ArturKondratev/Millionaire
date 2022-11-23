@@ -12,10 +12,18 @@ class MainMenuViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet var startGameButton: UIButton!
     @IBOutlet var lastResultLabel: UILabel!
+    let recordsCaretaker = RecordsCaretaker()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        getInfo()
+    }
+    
+    func getInfo() {
+        if let count = recordsCaretaker.retrieveRecords().last?.answeredQuestionCount {
+            self.lastResultLabel.text = "Последний результат: " + "\(count)"
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
